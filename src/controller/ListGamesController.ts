@@ -16,4 +16,10 @@ export class ListGamesController {
         return res.json(category)
     }
 
+    async references(req: Request, res: Response){
+        const references = await prismaClient.gameCategory.findMany()
+
+        return res.json(references)
+    }
+
 }

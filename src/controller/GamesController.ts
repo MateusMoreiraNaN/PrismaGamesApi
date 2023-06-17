@@ -5,15 +5,22 @@ export class CreateGamesController {
     async games(req: Request, res: Response){
         const { name, bar_code, price } = req.body
 
-        const game = await prismaClient.game.create({
-            data:{
-                bar_code,
-                name,
-                price
-            }
-        })
+        if(!bar_code){
+            const game = await prismaClient.game.create({
+                data:{
+                    bar_code,
+                    name,
+                    price
+                }
+            })
+            return res.json(game)
+        }else{
+            res.sendStatus(400)
+            
+            
+        }
 
-        return res.json(game)
+        
     }
 
 }

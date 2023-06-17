@@ -5,12 +5,16 @@ export class CreateCategoryController{
     async category(req: Request, res: Response){
         const { name } = req.body
 
-        const category = await prismaClient.category.create({
-            data:{
-                name
-            }
-        })
-
-        return res.json(category)
+        if(!name){
+            const category = await prismaClient.category.create({
+                data:{
+                    name
+                }
+            })
+    
+            return res.json(category)
+        }else{
+            res.sendStatus(400)
+        }
     }
 }
