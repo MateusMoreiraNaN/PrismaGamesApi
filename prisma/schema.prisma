@@ -16,4 +16,12 @@ model Game{
   bar_code String @unique
   price Decimal
   created_at DateTime @default(now())
+  @@map("games")
+}
+
+model Category{
+  id String @id @default(uuid())
+  name String
+
+  @@map("categories")
 }
