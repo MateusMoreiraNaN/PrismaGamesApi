@@ -10,4 +10,10 @@ export class ListGamesController {
         return res.json(games2)
     }
 
+    async category(req: Request, res: Response){
+        const category = await prismaClient.category.findMany()
+
+        return res.json(category)
+    }
+
 }
